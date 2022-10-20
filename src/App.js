@@ -8,20 +8,17 @@ function App() {
   const [supervisors,setsupervisors] = useState(null);
   const [apiSuccessResponse,setApiSuccessResponse] = useState(null);
   const [apiErrorResponse,SetApiErrorResponse] = useState(null);
-  const [hideLightbox, setHideLightbox] = useState(true);
   const [user,setuser] = useState(
     {supervisor_id:0,
       name:""
     }
     );
 
-
-
-  
-  const url = "bpo/supervisors"
+ 
   const token = "Bearer 39|qFp2KXa0sllsyFupxtdPsTPqKDc2HapQrW2mSM9T";
 
   const fetchuser = async () => {
+    const url = "bpo/supervisors"
     try {
       axios.get(url,
         {headers: {
@@ -44,8 +41,6 @@ function App() {
        
     }
 };
-
-
 const createuser = async () => {
 
   let posturl="bpo/teams";
@@ -109,13 +104,13 @@ const createuser = async () => {
                     <input className="form-control" name='name'
                     value={user.name}
                     onChange={handleInputs}
-                    placeholder='Please Enter Team Member Name' autoComplete='off'  />
+                    placeholder='Please Enter Team Member Name' autoComplete='off' required  />
               </div>
        
               <div className='form-group col-md-3'>
                     <select value={user.supervisor_id} onChange={handleInputs} className='form-control' name="supervisor_id" autoComplete='off'
                      onSelect={handleInputs}
-
+                    required
                     >
                       <option  value="">Select Supervisor</option>
                       {
@@ -127,7 +122,7 @@ const createuser = async () => {
                     </select>
               </div>
               <div className='form-group col-md-3'>
-                    <button className='form-control btn btn-success' onClick={createuser}>Submit</button>
+                    <button className='form-control btn btn-success' onClick={createuser}>Send</button>
               </div>
         </div>
 
